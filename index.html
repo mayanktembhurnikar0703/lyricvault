@@ -10,194 +10,152 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 body {
   background: #0a0a0a;
   color: white;
-  display: flex;
+  overflow-x: hidden;
 }
 
-/* SIDEBAR (Spotify-style) */
-.sidebar {
-  width: 240px;
+/* HERO */
+.hero {
   height: 100vh;
-  background: #000;
-  padding: 20px;
-  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
+  text-align: center;
 }
 
-.sidebar h2 {
-  margin-bottom: 30px;
-  font-size: 1.4rem;
+.hero h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  animation: fadeIn 1.2s ease forwards;
 }
 
-.sidebar a {
-  display: block;
+.hero p {
+  margin-top: 10px;
   color: #aaa;
-  margin: 12px 0;
-  text-decoration: none;
-  transition: 0.2s;
+  animation: fadeIn 2s ease forwards;
 }
 
-.sidebar a:hover {
-  color: white;
+.btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-/* MAIN */
-.main {
-  margin-left: 240px;
-  padding: 30px;
-  width: 100%;
+.btn:hover {
+  background: white;
+  color: black;
 }
 
-/* HEADER */
-.header {
-  margin-bottom: 30px;
-}
-
-.header h1 {
-  font-size: 2.5rem;
-}
-
-.header p {
-  color: #888;
-  margin-top: 5px;
-}
-
-/* SECTION TITLE */
-.section-title {
-  margin: 30px 0 15px;
-  color: #ccc;
-  font-size: 1.2rem;
-}
-
-/* GRID (Apple Music style) */
+/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 40px;
 }
 
-/* CARD */
 .card {
   background: #111;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  transition: 0.25s ease;
-  position: relative;
+  transition: 0.3s;
 }
 
 .card:hover {
-  transform: scale(1.04);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  transform: scale(1.03);
 }
 
 iframe {
   width: 100%;
-  height: 420px;
+  height: 500px;
   border: none;
 }
 
-/* TAGS */
-.tag {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(255,255,255,0.1);
-  padding: 5px 10px;
-  font-size: 12px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
+/* SCROLL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
 }
 
-/* MOBILE */
-@media(max-width: 768px){
-  .sidebar {
-    display: none;
-  }
-  .main {
-    margin-left: 0;
-  }
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-  <h2>🎧 lyricvault</h2>
-  <a href="#">Home</a>
-  <a href="#">Featured</a>
-  <a href="#">Trending</a>
-  <a href="#">Archive</a>
-</div>
+<!-- HERO -->
+<section class="hero">
+  <h1>lyricvault.wav</h1>
+  <p>press play on emotions.</p>
+  <div class="btn" onclick="scrollToReels()">Explore Reels</div>
+</section>
 
-<!-- MAIN -->
-<div class="main">
+<!-- REELS GRID -->
+<section class="grid">
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>lyricvault.wav</h1>
-    <p>lyrics that feel like music.</p>
+  <div class="card reveal">
+    <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
   </div>
 
-  <!-- FEATURED -->
-  <div class="section-title">🔥 Featured</div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="tag">Featured</div>
-      <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
-    </div>
-
+  <div class="card reveal">
+    <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
   </div>
 
-  <!-- TRENDING -->
-  <div class="section-title">📈 Trending</div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="tag">Hot</div>
-      <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
-    </div>
-
-    <div class="card">
-      <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
-    </div>
-
-    <div class="card">
-      <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
-    </div>
-
+  <div class="card reveal">
+    <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
   </div>
 
-  <!-- ALL REELS -->
-  <div class="section-title">📀 Library</div>
-  <div class="grid">
+</section>
 
-    <!-- REPEAT THIS BLOCK FOR ALL 17 REELS -->
-    <div class="card">
-      <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
-    </div>
+<footer>
+  © lyricvault.wav — all rights reserved
+</footer>
 
-    <div class="card">
-      <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
-    </div>
+<script>
+function scrollToReels() {
+  document.querySelector('.grid').scrollIntoView({ behavior: 'smooth' });
+}
 
-    <div class="card">
-      <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
-    </div>
+/* Scroll reveal animation */
+window.addEventListener('scroll', () => {
+  const reveals = document.querySelectorAll('.reveal');
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
 
-    <div class="card">
-      <iframe src="https://www.instagram.com/reel/REEL_ID/embed"></iframe>
-    </div>
-
-  </div>
-
-</div>
+    if (elementTop < windowHeight - 100) {
+      el.classList.add('active');
+    }
+  });
+});
+</script>
 
 </body>
 </html>
